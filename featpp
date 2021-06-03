@@ -1,0 +1,2 @@
+#!/bin/bash
+python3 -B /Users/geoffrey_marty/Desktop/featpp/src/main/main.py "$@"
