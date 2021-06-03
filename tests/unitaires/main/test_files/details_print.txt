@@ -1,3 +1,0 @@
-Test : gn
-Test2 : gngn
-Test avec cinq tentatives : 5

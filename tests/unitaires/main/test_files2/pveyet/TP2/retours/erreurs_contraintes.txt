@@ -1,2 +1,0 @@
-Delai d'attente non respecte. Il vous est impossible de jouer le scenario : scenario_delai_enorme.
-Nombre de tentatives maximum atteint. Il vous est impossible de jouer le scenario : scenario_zero_tentative.
