@@ -9,20 +9,15 @@ from variables import *
 
 def start(project_name):
 
-    # Vérifier qu'un projet portant ce nom n'existe pas déjà
-    def existing_path(name):
-        path = projects_path + name
-        if os.path.exists(path) == True:
-            date = datetime.datetime.now()
-            # Exemple : tp01_06-05-2021_16:14:26
-            name += '_' + date.strftime("%Y-%m-%d_%Hh%Mm%Ss")
-            existing_path(name)
-        return path
-
-    project_path = existing_path(project_name)
+    project_path = projects_path + project_name
 
     try:
-        shutil.copytree(featpp_path + os.path.join("main", "ressource", "project_sample"), project_path)
+        shutil.copytree(os.path.join(featpp_path, "resource", "project_sample"), project_path)
+    except FileExistsError:
+        date = datetime.datetime.now()
+        # Exemple : tp01_06-05-2021_16:14:26
+        project_name += '_' + date.strftime("%Y-%m-%d_%Hh%Mm%Ss")
+        start(project_name)
     except:
         traceback.print_exc()
         print("\nOperation aborted.")
