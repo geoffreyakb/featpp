@@ -9,7 +9,7 @@ import functools
 # Modules featpp
 import utility
 from Scenario import Scenario
-from project_env import ProjectEnv
+from ProjectEnv import ProjectEnv
 from Penalty import Penalty
 from typeAnnotations import *
 

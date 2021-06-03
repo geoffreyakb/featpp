@@ -1,7 +1,7 @@
-# Modules python
 import sys
+sys.path.append(sys.path[0]+'/../../')
+import env
 import re
-import os
 
 # Sous-programmes principaux
 from setup import setup
@@ -20,7 +20,7 @@ from variables import *
 # Definitions
 def help(sub=None):
 
-    help_file = featpp_path + os.path.join("src", "main", "main", "help", "help.txt")
+    help_file = os.path.join(featpp_path, "resource", "help", "help.txt")
 
     with open(help_file, "r") as file:
         if sub:

@@ -6,7 +6,7 @@ import sys
 
 # Modules featpp
 from Scenario import Scenario
-from project_env import ProjectEnv
+from ProjectEnv import ProjectEnv
 from typeAnnotations import *
 import utility
 

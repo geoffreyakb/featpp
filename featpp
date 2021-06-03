@@ -1,2 +1,4 @@
-#!/opt/anaconda3/bin/python
-python3 -B /Users/geoffrey_marty/Desktop/featpp/src/main/main.py "$@"
+#!/bin/bash
+# echo $0
+# python3 -B /Users/geoffrey_marty/Desktop/featpp/install/featpp/usr/lib/featpp/src/main/main.py "$@"
+python3 -B /Users/geoffrey_marty/Desktop/rendu/src/main/main.py  "$@"

@@ -2,9 +2,9 @@
 import json
 import os
 
-featpp_path = os.path.dirname(__file__).strip(os.path.join("src", "main"))
+featpp_path = os.path.dirname(__file__)
 
-with open(os.path.join("settings.json"), 'r') as f:
+with open(os.path.join("variables.json"), 'r') as f:
         paths = json.load(f)
 
 repository_path = paths["repository_path"]

@@ -19,7 +19,7 @@ import utility
 # Fichier stockant les paths utiles
 from variables import *
 
-@argumentType("projet", str)
+@argumentType("project", str)
 @argumentType("promos", str)
 def send(project, *promos):
 

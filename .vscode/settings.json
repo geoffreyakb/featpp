@@ -2,8 +2,6 @@
     "python.analysis.extraPaths": [
         "./",
 
-        "./bdd/",
-
         "./tests/",
         "./tests/unitaires/main/",
         "./tests/unitaires/scenario/",
@@ -13,7 +11,7 @@
 
         "./src/main/", 
         "./src/isolate/",
-        "./src/outils/", 
+        "./src/utils/", 
         "./src/scenarios/",
         "./src/scenarios/results/",
         "./src/scenarios/tools/",

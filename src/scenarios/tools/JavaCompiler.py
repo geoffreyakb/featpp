@@ -1,7 +1,7 @@
 from Tool import Tool, select_arg
 from JavaCompilerResult import JavaCompilerResult
 from Result import Result
-from project_env import ProjectEnv
+from ProjectEnv import ProjectEnv
 import subprocess as sp
 from typeAnnotations import *
 from isolate import *

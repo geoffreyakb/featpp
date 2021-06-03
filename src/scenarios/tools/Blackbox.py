@@ -1,7 +1,7 @@
 from Tool import Tool
 from BlackboxResult import BlackboxResult
 from typeAnnotations import *
-from project_env import ProjectEnv
+from ProjectEnv import ProjectEnv
 from isolate import *
 import subprocess as sp
 import os

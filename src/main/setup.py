@@ -6,12 +6,12 @@ import shutil
 # Fichier stockant les paths utiles
 from variables import *
 
-def setup(json_file):    
-
-    def make_path(path):
+def make_path(path):
         if not os.path.exists(path):
             os.mkdir(path)
             return False
+
+def setup(json_file):    
         
     shutil.copy(json_file, featpp_path + "settings.json")
 
