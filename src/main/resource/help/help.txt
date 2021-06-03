@@ -1,0 +1,40 @@
+help: featpp [sous-programme] [arguments du sous-programme]
+
+Les sous-programmes sont à choisir parmi :
+
+|setup : met en place votre environnement en créant les dossiers avec les paths rentrés
+|        dans le fichier .json si ce n'est pas déjà fait
+|___
+    |arg1 : le path du fichier .json
+
+|start : débute la création d'un nouveau projet
+|___
+    |arg1 : le nom de ce nouveau projet 
+
+|runtests : permet d'effectuer des tests sur un projet déjà configurer avant de l'envoyer à vos élèves
+|___
+    |arg1 : le nom du projet à tester
+
+|send : à utiliser après avoir configurer et tester votre projet :
+|        la commande envoie le projet sur le svn de vos étudiants
+|___
+    |arg1 : le nom du projet à déployer
+    |args_suivants : les noms des promos auxquelles envoyer le projet (all pour toutes)
+
+|evaluate : lance des batteries de tests sur un étudiant et un TP en particulier
+|___
+    |arg1 : la promo de l'étudiant
+    |arg2 : le login de l'étudiant (ou le nom de son dépôt svn)
+    |arg3 : le nom du projet
+
+|progress : permet à l'enseignant de récupérer des informations 
+|		    sur l'avancée des étudiants dans un fichier avancee_globale.txt
+|___
+    |arg1 : le nom du projet
+    |arg2 : les noms des promos pour lesquelles on veut savoir l'avancée (all pour toutes)
+
+|shut : permet de finir un projet pour une promo donnée
+|       ainsi l'enseignant ne recevra plus les avancées et demandes de tests des étudiants
+|___
+    |arg1 : le nom du projet à finir
+    |args_suivants : les noms des promos pour lesquelles le projet est terminé (all pour toutes)

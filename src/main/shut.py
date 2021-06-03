@@ -1,0 +1,2 @@
+def shut():
+    pass
