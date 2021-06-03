@@ -1,7 +1,8 @@
 {
     "python.analysis.extraPaths": [
-
         "./",
+
+        "./bdd/",
 
         "./tests/",
         "./tests/unitaires/main/",
@@ -13,7 +14,7 @@
         "./src/main/", 
         "./src/isolate/",
         "./src/outils/", 
-        "/Users/geoffrey_marty/Desktop/featpp/src/scenarios/",
+        "./src/scenarios/",
         "./src/scenarios/results/",
         "./src/scenarios/tools/",
     ]
