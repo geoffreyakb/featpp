@@ -376,7 +376,7 @@ Si jamais un étudiant modifie et compromet ce fichier en supprimant ou ajoutant
 
 ### D. Fichier d'avancée globale : avancee_globale_[DATE].txt <a id='avancee'></a>
 
-Pour générer un fichier `avancee_globale_[DATE].txt`, référez-vous à [cette partie](#progress). Un fichier d'avancée globale contient la progression des étudiants vis-à-vis du score obtenu par scénario. Cette progression est exprimée scénario par scénario et enfin pour la totalité des scénarios. De plus, il est possible d'observer le nombre de tentatives effectuées pour chaque scénario pour chaque élève. Voici un exemple de fichier d'avancée globale :
+Pour générer un fichier `avancee_globale_[DATE].txt`, référez-vous à [cette partie](#progress). Un fichier d'avancée globale contient la progression des étudiants vis-à-vis du score obtenu par scénario. Cette progression est exprimée scénario par scénario et enfin pour la totalité des scénarios dans l'ordre de résultats croissants. De plus, il est possible d'observer le nombre de tentatives effectuées pour chaque scénario pour chaque élève. Voici un exemple de fichier d'avancée globale :
 
 ```txt
 Date d'execution : 2021-03-03_15h52m25s
@@ -401,9 +401,9 @@ Eleve3 : 4/5 (80.0%) 1 tentative
 
 Score total obtenu par les etudiants :
 -------------------------------------------
-Eleve1 : 5/10 (50.0%)
--------------------------------------------
 Eleve2 : 3/10 (30.0%)
+-------------------------------------------
+Eleve1 : 5/10 (50.0%)
 -------------------------------------------
 Eleve3 : 9/10 (90.0%)
 -------------------------------------------

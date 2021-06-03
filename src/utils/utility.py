@@ -403,6 +403,9 @@ def print_overall_progress(database_address, students_list, scenarios_list):
         else:
             total_percentage = 100.0
         scores.append((student, str(score) + '/' + str(max_score) + ' (' + str(total_percentage) + '%)'))
+    # On trie la liste en fonction des notes croissantes pour repérer les élèves en difficultés en premier.
+    scores.sort(key=lambda x: int(x[1].split()[0]), reverse=False)
+    
     
     # Fermeture de la base de données
     con.close()
