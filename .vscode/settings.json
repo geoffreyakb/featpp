@@ -1,0 +1,20 @@
+{
+    "python.analysis.extraPaths": [
+
+        "./",
+
+        "./tests/",
+        "./tests/unitaires/main/",
+        "./tests/unitaires/scenario/",
+        "./tests/unitaires/scenario/results/",
+        "./tests/unitaires/scenario/tools/",
+        "./tests/unitaires/utils/",
+
+        "./src/main/", 
+        "./src/isolate/",
+        "./src/outils/", 
+        "/Users/geoffrey_marty/Desktop/featpp/src/scenarios/",
+        "./src/scenarios/results/",
+        "./src/scenarios/tools/",
+    ]
+}
