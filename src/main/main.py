@@ -40,7 +40,7 @@ if (len(sys.argv) == 1) or (sys.argv[1] == "help"):
     help()
 
 subprogs = {
-    "setup" : [setup, 1],
+    "setup" : [setup, 0],
     "start" : [start, 1],
     "runtests" : [runtests, 1],
     "send" : [send, len(sys.argv)-2],
@@ -53,7 +53,7 @@ subprog = subprogs.get(sys.argv[1], [help, 0])
 nb_args = subprog[1]
 
 # Cas où trop peu d'arguments sont appelés
-if nb_args+2 > len(sys.argv):
+if (nb_args+2 > len(sys.argv)) and (subprog != "setup"):
     help(sys.argv[1])
 else:
     arg_list = sys.argv[2:nb_args+2]

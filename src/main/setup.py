@@ -11,9 +11,10 @@ def make_path(path):
             os.mkdir(path)
             return False
 
-def setup(json_file):    
-        
-    shutil.copy(json_file, featpp_path + "settings.json")
+def setup(json_file=featpp_path+"settings.json"):    
+
+    if json_file != featpp_path+"settings.json":
+        shutil.copy(json_file, featpp_path + "settings.json")
 
     make_path(projects_path)
     for _, path in repository_path.items():
@@ -23,5 +24,5 @@ def setup(json_file):
                 file.write('Students')
             svnAdd = 'svn add ' + path
             subprocess.run(svnAdd, shell=True)
-            svnCommit = 'svn commit -m "A new list of students has been added." ' + path
+            svnCommit = 'svn commit -m "Une nouvelle promo a été ajoutée." ' + path
             subprocess.run(svnCommit, shell=True)
