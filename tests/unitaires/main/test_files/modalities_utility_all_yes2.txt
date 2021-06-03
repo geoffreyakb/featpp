@@ -1,0 +1,27 @@
+Voulez-vous jouer tous les tests ? oui
+Voulez-vous jouer tous les tests qui n'ont pas de restriction de tentatives (infini) ? non
+
+scenario_test : non
+    nombre de tentatives infini, vous avez joue ce test 0 fois
+    derniere tentative = 2021-03-03 16:08:29.771393
+    prochaine tentative possible = 2021-03-03 16:08:29.771393
+
+scenario_test2 : non
+    nombre de tentatives infini, vous avez joue ce test 0 fois
+    derniere tentative = 2021-03-03 16:08:29.771393
+    prochaine tentative possible = 2021-03-03 16:08:29.771393
+
+scenario_delai_enorme : non
+    nombre de tentatives infini, vous avez joue ce test 0 fois
+    derniere tentative = 2021-03-03 16:08:29.771393
+    prochaine tentative possible = 2021-03-03 16:08:29.771393
+
+scenario_cinq_tentatives : non
+    nombre de tentatives restantes = 5
+    derniere tentative = 2021-03-03 16:08:29.771393
+    prochaine tentative possible = 2021-03-03 16:08:29.771393
+
+scenario_zero_tentative : non
+    nombre de tentatives restantes = 0
+    derniere tentative = 2021-03-03 16:08:29.771393
+    prochaine tentative possible = 2021-03-03 16:08:29.771393

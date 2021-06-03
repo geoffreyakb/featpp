@@ -1,0 +1,2 @@
+Fichier modalites compromis - veillez a ne pas modifier autre chose que le terme 'non' dans ce fichier.
+Fichier reinitialise.

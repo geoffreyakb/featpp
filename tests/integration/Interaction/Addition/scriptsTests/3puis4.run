@@ -1,0 +1,5 @@
+#!/bin/bash 
+java Add << EOF
+3
+4
+EOF

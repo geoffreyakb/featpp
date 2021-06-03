@@ -1,0 +1,16 @@
+Test : gn
+Penalite de 1 point
+Test2 : gngn
+Penalite de 2 points
+Test avec cinq tentatives : 5
+Penalite de 3 points
+
+
+Compte-rendu concernant les scenarios joues
+- - - - - - - - - - - - - - - -
+
+scenario_test - Vous avez obtenu 0/1 comme la derniere fois.
+scenario_test2 - Vous avez obtenu 3/5. C'est mieux que la derniere fois ! (0/5)
+scenario_cinq_tentatives - Vous avez obtenu 5/8. C'est moins bien que la derniere fois. (6/8)
+Score pour les scenarios joues : 8/14.
+

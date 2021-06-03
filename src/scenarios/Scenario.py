@@ -1,6 +1,6 @@
-"""
+'''
     Fichier declarant la structure generique d'un scenario
-"""
+'''
 from typeAnnotations import *
 import types
 
