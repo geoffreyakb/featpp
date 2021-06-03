@@ -9,7 +9,7 @@ INFINITE_ATTEMPTS = -1
 
 class Scenario():
 
-    """ 
+    '''
         Classe generique rassemblant les caracteristiques communes a tous les scenario de test. Cette classe possède une variable statique qui permet de récupérer
         toutes les instances de scenario créées.
 
@@ -19,7 +19,7 @@ class Scenario():
             _delay : Entier naturel - Le delai minimum entre deux tentative de test de ce scenario pour un etudiant
             _visible : bool - Indique si le scénario est visible ou non par l'étudiant
             _mark : Entier naturel - Le nombre total de points a evaluer sur ce scenario
-    """
+    '''
 
     @argumentType("_run", types.FunctionType)
     @argumentType("_nb_attempts", int)

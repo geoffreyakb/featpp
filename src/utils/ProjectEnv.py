@@ -26,7 +26,7 @@ class ProjectEnv():
     @argumentType("_path_to_isolate_env", str, True)
     @argumentType("_isolate_id", str, True)
     @argumentType("_sources_path", str)
-    def __init__(self, _student_project_folder, _project_folder, _path_to_isolate_env = None, _isolate_id = None, _sources_path = "sources/"):
+    def __init__(self, _student_project_folder, _project_folder, _path_to_isolate_env = None, _isolate_id = None, _sources_path = "sources"):
         
         self.student_project_folder = os.path.abspath(_student_project_folder) 
         self.project_folder = os.path.abspath(_project_folder)
@@ -38,5 +38,5 @@ class ProjectEnv():
 
     def move_sources(self):
         
-        cp_state=isolate_mv(self.path_to_isolate_env, [self.student_project_folder + "/sources/*", self.project_folder + "/scriptsTests/*"])
+        cp_state=isolate_mv(self.path_to_isolate_env, [os.path.join(self.student_project_folder, "sources", "*"), os.path.join(self.project_folder, "/scriptsTests", "*")])
         return cp_state.stdout

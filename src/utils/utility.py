@@ -46,9 +46,9 @@ def modalities_text(scenarios, database_address, student_name=None):
         
     '''
     # Lecture du template des modalités
-    txt = open(featpp_path + "/src/main/resource/modalites.txt", "r")
-    template = Template(txt.read())
-    txt.close()
+    txt = os.path.join(featpp_path, "src", "main", "resource", "modalites.txt")
+    with open(txt, "r") as txt:
+       template = Template(txt.read())
 
     if(student_name == None):
 
@@ -103,9 +103,9 @@ def parse_modalities(modalities_address, scenarios):
     """
 
     # Ouverture du template
-    txt = open(featpp_path + "/src/main/resource/modalites.txt", "r")
-    template = Template(txt.read())
-    txt.close()
+    txt = os.path.join(featpp_path, "src", "main", "resource", "modalites.txt")
+    with open(txt, "r") as txt:
+       template = Template(txt.read())
 
     # Développement du template
     subtemplate = template.render(
@@ -116,9 +116,8 @@ def parse_modalities(modalities_address, scenarios):
 
     # Conversion des données du fichier élève
     answers = {}
-    mod_file = open(modalities_address, "r")
-    studenttxt = mod_file.readlines()
-    mod_file.close()
+    with open(modalities_address, "r") as mod_file:
+        studenttxt = mod_file.readlines()
 
     for i in range(len(subtemplate)):
         r = re.search("(.*)\{\{([a-zA-Z_0-9]+)\}\}", subtemplate[i])
@@ -229,9 +228,8 @@ def run_scenarios(scenarios, database_address, modalities_address, student_name,
     con.commit()
     con.close()
     # Ecriture du fichier modalites.txt avec les nouvelles valeurs de la bdd
-    writer = open(modalities_address, 'w')
-    writer.write(modalities_text(SCENARIOS, database_address, student_name))
-    writer.close()
+    with open(modalities_address, "w") as writer:
+        writer.write(modalities_text(SCENARIOS, database_address, student_name))
     return results
 
 @argumentType("scenarios", {list: Scenario})
@@ -323,9 +321,8 @@ def print_results(results, dest_file, mode) :
     """
     
      # Réinitialisation du fichier de destination
-    writer = open(dest_file, 'w')
-    writer.write("")
-    writer.close()
+    with open(dest_file , "w") as writer:
+        writer.write("")
     
     # Pour chaque test effectué, écriture dans le fichier de destination
     for list_result in results :
@@ -361,9 +358,9 @@ def print_overall_progress(database_address, students_list, scenarios_list):
     cur = con.cursor()
     
     # Lecture du template de l'avancée globale
-    text = open(featpp_path + "/src/main/resource/avancee_globale.txt", "r")
-    template = Template(text.read())
-    text.close()
+    text = os.path.join(featpp_path, "src", "main", "resource", "avancee_globale.txt")
+    with open(text, "r") as text:
+        template = Template(text.read())
     
     # Création des data
     stud_data = {}
@@ -417,22 +414,3 @@ def print_overall_progress(database_address, students_list, scenarios_list):
         students_data = stud_data,
         scenarios_data = [s.getName() for s in scenarios_list] 
     )
-            
-        
-        
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
