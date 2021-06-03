@@ -25,8 +25,8 @@ def send(project, *promos):
 
     for eleves in promos:
 
-        project_folder = projects_path + project
-        path_liste_eleves = repository_path[eleves] + 'students.csv'
+        project_folder = os.path.join(projects_path, project)
+        path_liste_eleves = os.path.join(repository_path[eleves], "students.csv")
 
         if not os.path.exists(project_folder) :
             print("Le chemin vers le TP est invalide. Opération avortée.\n")
@@ -96,7 +96,7 @@ def send(project, *promos):
             reader = csv.DictReader(liste_eleves)
             for row in reader:
                 student = row["Students"]
-                student_path = repository_path[eleves] + student
+                student_path = os.path.join(repository_path[eleves], student)
 
                 existed = make_path(student_path)
                 if existed == False:

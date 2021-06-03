@@ -9,7 +9,7 @@ from variables import *
 
 def start(project_name):
 
-    project_path = projects_path + project_name
+    project_path = os.path.join(projects_path, project_name)
 
     try:
         shutil.copytree(os.path.join(featpp_path, "resource", "project_sample"), project_path)

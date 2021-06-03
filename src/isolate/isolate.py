@@ -1,5 +1,6 @@
 import subprocess as sp
 from typeAnnotations import *
+import os
 
 from variables import *
 
@@ -8,7 +9,8 @@ from variables import *
     les codes des étudiants en toute sécurité
 """
 
-PATH_ISOLATE_CALL = f"{featpp_path}/src/isolate/isolate_call.sh" # chemin auquel sera le fichier isolate_call.sh après l'installation du framework
+PATH_ISOLATE_CALL = os.path.join(featpp_path, "isolate", "isolate_call.sh") # chemin auquel sera le fichier isolate_call.sh après l'installation du framework
+
 
 #TODO : gestion droit d'accès (simple ajout sudo avec gestion mdp depuis fichier ?)
 #TODO : type de retour des fonction d'isolate 

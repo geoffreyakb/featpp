@@ -16,10 +16,10 @@ from variables import *
 
 def progress(tp, promo):
 
-    tp = projects_path + tp
+    tp = os.path.join(projects_path, tp)
     
-    students = repository_path[promo] + "students.csv"
-    database_address = tp + "/database_test.db"
+    students = os.path.join(repository_path[promo], "students.csv")
+    database_address = os.path.join(tp, "database_test.db")
     
     if not os.path.exists(tp) :
         print("Le chemin vers le TP est invalide. Opération avortée.\n")

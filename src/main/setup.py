@@ -11,10 +11,10 @@ def make_path(path):
             os.mkdir(path)
             return False
 
-def setup(json_file=featpp_path+"settings.json"):    
+def setup(json_file=os.path.join(featpp_path, "settings.json")):    
 
-    if json_file != featpp_path+"settings.json":
-        shutil.copy(json_file, featpp_path + "settings.json")
+    if json_file != os.path.join(featpp_path, "settings.json"):
+        shutil.copy(json_file, os.path.join(featpp_path, "settings.json"))
 
     make_path(projects_path)
     for _, path in repository_path.items():

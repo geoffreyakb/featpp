@@ -26,16 +26,16 @@ class WrongTestConfigurationException(Exception):
 @returnType(type(None))
 def runtests(project):
 
-    test_folder = projects_path + os.path.join(project, "testsProject")
+    test_folder = os.path.join(projects_path, project, "testsProject")
 
     # Importation du fichier de configuration pour le projet concerné
     sys.path.append(test_folder)
     tst = importlib.import_module("tests_runner") # Importation de la variable TESTS
     sys.path.remove(test_folder)
 
-    sys.path.append(projects_path + project)
+    sys.path.append(os.path.join(projects_path, project))
     conf = importlib.import_module("config") # Importation de la variabel SCENARIO_TESTS
-    sys.path.remove(projects_path + project)
+    sys.path.remove(os.path.join(projects_path, project))
 
     scs = {}
     for s in conf.SCENARIOS_TESTS:
@@ -56,7 +56,7 @@ def runtests(project):
     for folder_name, group_to_exec in tst.TESTS.items():
         
         # Execution des scenarios
-        fake_stud = test_folder + os.sep + folder_name
+        fake_stud = os.path.join(test_folder, folder_name)
         rs = []
         if(type(group_to_exec) == bool):
             for sc in conf.SCENARIOS_TESTS:
