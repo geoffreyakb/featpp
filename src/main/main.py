@@ -44,8 +44,7 @@ subprogs = {
     "runtests" : [runtests, 1],
     "send" : [send, len(sys.argv)-2],
     "evaluate": [evaluate, len(sys.argv)-2],
-    "progress" : [progress, 2],
-    "shut" : [shut, len(sys.argv)-2]
+    "progress" : [progress, 2]
 }
 
 subprog = subprogs.get(sys.argv[1], [help, 0])

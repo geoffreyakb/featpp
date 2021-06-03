@@ -46,7 +46,7 @@ def modalities_text(scenarios, database_address, student_name=None):
         
     '''
     # Lecture du template des modalités
-    txt = os.path.join(featpp_path, "src", "main", "resource", "modalites.txt")
+    txt = os.path.join(featpp_path, "main", "resource", "modalites.txt")
     with open(txt, "r") as txt:
        template = Template(txt.read())
 
@@ -103,7 +103,7 @@ def parse_modalities(modalities_address, scenarios):
     """
 
     # Ouverture du template
-    txt = os.path.join(featpp_path, "src", "main", "resource", "modalites.txt")
+    txt = os.path.join(featpp_path, "main", "resource", "modalites.txt")
     with open(txt, "r") as txt:
        template = Template(txt.read())
 
@@ -358,7 +358,7 @@ def print_overall_progress(database_address, students_list, scenarios_list):
     cur = con.cursor()
     
     # Lecture du template de l'avancée globale
-    text = os.path.join(featpp_path, "src", "main", "resource", "avancee_globale.txt")
+    text = os.path.join(featpp_path, "main", "resource", "avancee_globale.txt")
     with open(text, "r") as text:
         template = Template(text.read())
     
@@ -390,7 +390,7 @@ def print_overall_progress(database_address, students_list, scenarios_list):
                 percentage = (int(mark)/scenario.mark)*100
             else:
                 percentage = 100.0
-            data[scenario.getName()] = mark + '/' + str(scenario.mark) + ' (' + str(percentage) + '%) ' + attempts_done + attempts_msg 
+            data[scenario.getName()] = mark + ' / ' + str(scenario.mark) + ' (' + str(percentage) + '%) ' + attempts_done + attempts_msg 
         # Une fois le dictionnaire d'un élève rempli, on l'ajoute à un dictionnaire {nom_eleve:dictionnaire_eleve}
         stud_data[student] = data
         
@@ -399,7 +399,7 @@ def print_overall_progress(database_address, students_list, scenarios_list):
             total_percentage = (score/max_score)*100
         else:
             total_percentage = 100.0
-        scores.append((student, str(score) + '/' + str(max_score) + ' (' + str(total_percentage) + '%)'))
+        scores.append((student, str(score) + ' / ' + str(max_score) + ' (' + str(total_percentage) + '%)'))
     # On trie la liste en fonction des notes croissantes pour repérer les élèves en difficultés en premier.
     scores.sort(key=lambda x: int(x[1].split()[0]), reverse=False)
     
