@@ -23,38 +23,87 @@ III. [Documents utiles](#documents)
 ## I. Installation du framework  <a id='installation'></a>
 
 ### Prérequis 
-Avant d'installer ce programme, il est nécessaire :
-- D'être sur une distribution Debian de linux.
-- D'avoir installé `python3` et un compilateur C (par exemple `gcc`)
+Les seuls prérequis sont au niveau de Python. Pour le bon fonctionnement des programmes, il faut avoir une version de Python 3 ou supérieure, avec la majorité des modules classiques (os, sys, etc.) importés via Anaconda, par exemple.
+On précise toutefois ici que seule une machine Linux pourra accéder à la fonctionnalité "isolate" qui permet d'exécuter des codes inconnus en toute sécurité. Le reste de l'application fonctionne sur tous les systèmes d'exploitation.
+
 
 ### Comment installer  FEAT++ ?
-* Si aucune modification n'a été apportée au code du projet, il suffit de se placer à la racine du projet et d'exécuter la commande : 
+* Pour télécharger le code source, et donc l'application, il suffit de rentrer la commande suivante, en vous plaçant dans un répertoire vierge qui deviendra FEAT++.
 
-  ```bash
-  sudo dpkg -i install/featpp.deb
-  ```
+```bash
+git init
+git pull https://github.com/geoffreyakb/featpp.git
+```
 
-* Si jamais le code du dépôt a été modifié, il faut se placer à la racine du projet et exécuter la commande 
 
-  ```bash
-  sh install.sh
-  ```
-
-  Ce script recrée le package `.deb` avant de l'installer.
 
 ## II. Commandes  <a id='commandes'></a>
 
-#### A. Créer un nouveau projet vierge  <a id='startup'></a>
+Il vous faudra configurer l'environnement de FEAT++. L'application a besoin de connaître plusieurs chemins :
+    - Celui d'un dossier où tous vos projets seront créés, stockés puis depuis lequel ils seront envoyés
+    - Ceux des copies locales des dépôts SVN pour chaque liste d'élèves
+Pour cela, vous avez deux options.
+Premièrement, vous pouvez configurer le fichier "variables.json" situé au chemin "./featpp/src/main/variables.json", de la manière suivante :
+
+```json
+{   
+    "repository_path":
+    {
+        "1A_prepa" : "/home/cours/svn_eleves/1A_prepa",
+        "2A_prepa" : "home/cours/svn_eleves/2A_INP"
+    },
+
+    "projects_path" : "home/cours/projets/"
+}
+```
+
+Attention :
+- il ne faut pas modifier les noms "repository_path" et "projects_path", cela engendrerait des erreurs
+- lorsque vous appellerez les commandes FEAT++, elles prendront en argument les keys des paths correspondants, pas le nom du repository.
+Par exemple :
+```bash
+featpp send tp1 2A_prepa
+```
+et non :
+```bash
+featpp send tp1 2A_INP
+```
+Il est donc conseillé de synchroniser les deux.
+
+#### A. Créer l'environnement de travail <a id='setup'></a>
+
+Ensuite, il ne reste plus qu'à l'enseignant d'appeler la commande suivante :
+```bash
+featpp setup
+```
+
+Deuxièmement, vous pouvez insérer le path vers votre propre fichier .json, à condition qu'il est rigoureusement la même syntaxe que le template ci-dessus.
+```bash
+featpp setup <json_file>
+```
+
+* json_file : Il s'agit du path vers votre fichier json.
+
+Dans les deux cas, cette commande créera les dossiers dont vous avez renseigné les path si ce n'est pas déjà fait, et le logiciel enregistrera les chemins en mémoire. Si les dépôts SVN n'existaient pas, FEAT++ créera un fichier au format `.csv` qui contiendra la liste des élèves de la promo. Il vous suffit de le remplir au format suivant :
+
+```txt
+Students
+student1
+student2
+student3
+```
+
+#### B. Créer un nouveau projet vierge  <a id='startup'></a>
 
 Afin de créer un nouveau projet, l'enseignant peut utiliser la commande suivante :
 
 ```bash
-featpp startup <dossier_projet>
+featpp start <nom_projet>
 ```
 
 Argument :
 
-* dossier_projet : Il s'agit du dossier qui sera créé et qui contiendra l'arborescence par défaut d'un nouveau projet sous FEAT++.
+* nom_projet : Il s'agit du nom du dossier qui sera créé et qui contiendra l'arborescence par défaut d'un nouveau projet sous FEAT++.
 
 Cette commande va générer une arborescence par défaut d'un projet sous FEAT++ :
 
@@ -78,46 +127,39 @@ Cette arborescence contient les éléments suivants :
 * __scriptsTests__ est un dossier contenant des fichiers rédigés par l'enseignant qui serviront d'entrée pour les outils de tests (Ex : classes de tests JUnit, paramètres checkstyle, ...)
 * __testsProject__ est un dossier qui contiendra des tests que l'enseignant pourra réaliser sur le code qu'il fournit pour faire des vérifications. Vous trouverez plus d'informations sur ce point dans la section [Vérifier ses propres scripts de tests](#runtests).
 
-### B. Configurer un projet  <a id='setup'></a>
+### C. Vérifier ses propres scripts de tests  <a id='runtests'></a>
+
+Pour configurer les tests d'un projet, il faut modifier le fichier `testsProject/tests_runner.py`, et optionnellement ajouter des scénarios de test dans le fichier `config.py`. Vous trouverez plus d'informations sur la manière de configurer tous ces documents dans la section [Documents utiles](#documents). Une fois que la configuration a été effectuée, il est possible de la mettre en pratique en utilisant la commande suivante :
+
+```bash
+featpp runtests <nom_projet>
+```
+
+Argument :
+
+* nom_projet : Il s'agit du nom du projet dans lequel se trouve le fichier de configuration `config.py` relatif au projet pour lequel le professeur souhaite exercer ses tests. 
+
+### D. Envoyer un projet  <a id='send'></a>
 
 Pour configurer un projet, il faut modifier le fichier `config.py`, éventuellement fournir des fichiers utiles pour les tests, éventuellement fournir des fichiers pour tester les sources qu'il fournit. Vous trouverez plus d'informations sur la manière de configurer tous ces documents dans la section [Documents utiles](#documents). Une fois que la configuration a été effectuée, il est possible de la mettre en pratique en utilisant la commande suivante :
 
 ```bash
-featpp setup <dossier_projet> <liste_etudiant>
+featpp send <nom_projet> <promo_1> <promo_2> <promo_3> ...
 ```
 
 Arguments :
 
-* dossier_projet : Il s'agit du dossier dans lequel se trouvent le fichier de configuration `config.py` et la base de donnée `database_test.db` relatifs au projet pour lequel le professeur souhaite obtenir l'avancée globale des étudiants. 
+* dossier_projet : Il s'agit du nom du projet dans lequel se trouvent le fichier de configuration `config.py` et la base de donnée `database_test.db` relatifs au projet pour lequel le professeur souhaite obtenir l'avancée globale des étudiants. 
 
-* liste_eleve : Il s'agit d'un fichier au format `.csv` qui contient la liste des élèves dont on souhaite connaître la progression. Cette liste doit être rédigée sous le format suivant :
-
-```txt
-Students
-student1
-student2
-student3
-```
+* promo_i : Le nom des promos auxquelles vous voulez envoyer ce projet. Vous pouvez en renseigner une infinité.
 
 Cette commande va générer deux nouveaux fichiers :
 
 * __modalites.txt__ : Il s'agit du fichier qui va permettre à l'étudiant de définir les scénarios de tests qu'il veut jouer. Plus d'informations disponibles [ici](#modalites). Ce fichier est généré dans le dossier __public__.
 * __database_test.db__ : Il s'agit de la base de données propre au projet et au fichier de configuration fourni. C'est une base créée avec `sqlite3` qui contient une table par scénario de tests et des informations importantes comme le nombre de tentatives effectuées, le nombre de tentatives restantes, la dernière date d'exécution du scénario, le score et les pénalités obtenus pour un étudiant.
 
-### C. Vérifier ses propres scripts de tests  <a id='runtests'></a>
 
-Pour configurer les tests d'un projet, il faut modifier le fichier `testsProject/tests_runner.py`, et optionnellement ajouter des scénarios de test dans le fichier `config.py`. Vous trouverez plus d'informations sur la manière de configurer tous ces documents dans la section [Documents utiles](#documents). Une fois que la configuration a été effectuée, il est possible de la mettre en pratique en utilisant la commande suivante :
-
-```bash
-featpp runtests <dossier_projet>
-```
-
-Argument :
-
-* dossier_projet : Il s'agit du dossier dans lequel se trouve le fichier de configuration `config.py` relatif au projet pour lequel le professeur souhaite exercer ses tests. 
-
-
-### D. Récupérer le travail sur demande d'un élève  <a id='mill'></a>
+<!-- ### D. Récupérer le travail sur demande d'un élève  <a id='mill'></a>
 
 Une fois que tout a été configuré, l'utilisateur n'a plus qu'à lancer la commande suivante pour activer la détection automatique des demandes d'évaluation :
 
@@ -132,21 +174,23 @@ Arguments :
 
 Dans les faits, cette commande va régulièrement effectuer les commandes **svn update** et **svn info** afin de mettre à jour les dépôts, puis de vérifier si le fichier de modalités a été modifié depuis le dernier cycle de tests, auquel cas un cycle de tests est lancé. Le délai d'attente entre deux vérifications des sources des élèves est de 5 secondes par défaut. Celui-ci peut être changé depuis la variable **WAIT_TIME** dans le fichier `main_mill.py`.
 
-En théorie, mill n'a pas besoin d'être relancé après la création de chaque nouveau TP ou projet car il effectue une vérification à partir des dossiers présents dans le dépôt de chaque élève. Toutefois, cette fonctionnalité n'a pas été complètement testée et il est recommandé à l'utilisateur de stopper puis relancer le mill quand un nouveau travail est ajouté.   
+En théorie, mill n'a pas besoin d'être relancé après la création de chaque nouveau TP ou projet car il effectue une vérification à partir des dossiers présents dans le dépôt de chaque élève. Toutefois, cette fonctionnalité n'a pas été complètement testée et il est recommandé à l'utilisateur de stopper puis relancer le mill quand un nouveau travail est ajouté.    -->
 
-### E. Lancer un cycle de tests  <a id='cycle_teacher'></a>
+### E. Lancer un cycle de tests  <a id='evaluate'></a>
 
 Il est possible pour le professeur de lancer un cycle de test pour un élève sans tenir compte de ses contraintes afin de vérifier ce que l'élève a produit à la main. Pour cela il faut utiliser la commande suivante :
 
 ```bash
-featpp cycle_teacher <dossier_projet> <dossier_projet_etudiant> <scenario1> <scenario2> ...
+featpp evaluate <nom_projet> <promo> <etudiant> <scenario1> <scenario2> ...
 ```
 
 Arguments :
 
-* dossier_projet : Il s'agit du dossier dans lequel se trouve le fichier de configuration `config.py` concernant le projet que le professeur souhaite tester chez l'élève.
+* nom_projet : Il s'agit du nom du dossier dans lequel se trouve le fichier de configuration `config.py` concernant le projet que le professeur souhaite tester chez l'élève.
 
-* dossier_projet_etudiant : Il s'agit du dossier du projet en question mais dans le dossier de l'élève concerné.
+* promo : Le nom de la promo auquel appartient l'étudiant
+
+* etudiant : le nom du dépôt SVN de l'étudiant (en général son login)
 
 * une liste de noms de scenario que le professeur souhaite voir testé chez l'élève.
 
@@ -155,23 +199,15 @@ Arguments :
 Plutôt que d'observer un à un chaque dossier d'un élève pour voir où ils en sont, il est possible de générer un fichier texte contenant une synthèse de la progression des élèves en utilisant la commande suivante :
 
 ```bash
-featpp progress <dossier_projet> <liste_eleves>
+featpp progress <nom_projet> <promo_1> <promo_2> <promo_3> ...
 ```
 
 Arguments :
 
-* dossier_projet : Il s'agit du dossier dans lequel se trouvent le fichier de configuration `config.py` et la base de donnée `database_test.db` relatifs au projet pour lequel le professeur souhaite obtenir l'avancée globale des étudiants. 
-* liste_eleve : Il s'agit d'un fichier au format `.csv` qui contient la liste des élèves dont on souhaite connaître la progression. Cette liste doit être rédigée sous le format suivant :
-  
+* nom_projet : Il s'agit du nom du dossier dans lequel se trouvent le fichier de configuration `config.py` et la base de donnée `database_test.db` relatifs au projet pour lequel le professeur souhaite obtenir l'avancée globale des étudiants. 
+* promo_i : Les noms des promos pour lesquelles vous voulez obtenir l'avancement.
 
-```txt
-Students
-student1
-student2
-student3
-```
-
-Un fichier nommé `avancee_globale_[DATE].txt` est alors généré dans le dossier du projet avec __[DATE]__ écrit au format `%Y-%m-%d_%Hh%Mm%Ss`. Pour avoir un aperçu de ce fichier, vous pouvez vous rendre [ici](#avancee).
+Un fichier nommé `avancee_globale_[DATE].txt` est alors généré pour chaque promo entrée dans le dossier du projet avec __[DATE]__ écrit au format `%Y-%m-%d_%Hh%Mm%Ss`. Pour avoir un aperçu de ce fichier, vous pouvez vous rendre [ici](#avancee).
 
 ## III. Documents utiles <a id='documents'></a>
 
