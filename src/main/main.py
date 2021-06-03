@@ -10,7 +10,6 @@ from runtests import runtests
 from send import send
 from evaluate import evaluate
 from progress import progress
-from shut import shut
 
 # Fichier stockant les paths utiles
 from variables import *
