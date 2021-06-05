@@ -1,6 +1,5 @@
+# Modules Python
 import sys
-sys.path.append(sys.path[0]+'/../../')
-import env
 import re
 
 # Sous-programmes principaux
@@ -14,12 +13,16 @@ from progress import progress
 # Fichier stockant les paths utiles
 from variables import *
 
+# Module FEAT++ utile pour parcourir le fichier src et importer les autres modules
+sys.path.append(sys.path[0]+'/../../')
+import env
+
 # --------------------------------------------------------------------
 
 # Definitions
 def help(sub=None):
 
-    help_file = os.path.join(featpp_path, "resource", "help", "help.txt")
+    help_file = os.path.join(featpp_path, "main", "resource", "help", "help.txt")
 
     with open(help_file, "r") as file:
         if sub:

@@ -31,10 +31,10 @@ class Junit(Tool):
         compilation = sp.run(command, capture_output=True,text=True)
         details = str(compilation.stderr)
         test_compil = compilation.returncode==0
-        # result_tool = JavaCompilerResult(_file, details, test_compil)
+        result_tool = JavaCompilerResult(files, details, test_compil)
         
 
-        # return result_tool
+        return result_tool
     
    
     def selfcheck(self):
@@ -43,5 +43,5 @@ class Junit(Tool):
             Lancement d'un test rapide de compilation sur un hello world ecrit en Java
         """
 
-        # return self.run([os.path.abspath(HelloWorld.java)], [])
+        return self.run([os.path.abspath("HelloWorld.java")], [])
         pass

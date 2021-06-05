@@ -60,7 +60,7 @@ def send(project, *promos):
         # TODO Vérification de la presence de l'outil
 
         # TODO Vérification que les outils sont opérationnels (selfchecks)
-        #for tool in tools:
+        # for tool in tools:
         #    tool.selfcheck(options)
 
         # Recuperation des logins des etudiants depuis le fichier .csv passe en argument
@@ -68,10 +68,8 @@ def send(project, *promos):
         try :
             with open(path_liste_eleves, mode='r') as liste_eleves:
                 reader = csv.DictReader(liste_eleves)
-                line_count = 1
                 for row in reader:
                     students_list.append(row["Students"])
-                    line_count += 1
         except OSError as e:
             print(f"Liste des étudiants non trouvée : {path_liste_eleves}\nOpération avortée.\n")
             sys.exit(3)

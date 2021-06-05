@@ -1,7 +1,6 @@
 # Modules Python
 import os
 import csv
-import utility
 import sys
 import importlib
 import datetime
@@ -9,6 +8,7 @@ import datetime
 # Modules featpp
 from Scenario import Scenario
 from typeAnnotations import *
+import utility
 
 # Fichier stockant les paths utiles
 from variables import *
