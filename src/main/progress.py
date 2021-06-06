@@ -54,10 +54,8 @@ def progress(tp, promo):
     try :
         with open(students, mode='r') as csv_file:
             reader = csv.DictReader(csv_file)
-            line_count = 1
             for row in reader:
                 students_list.append(row["Students"])
-                line_count += 1
     except OSError:
         print("\nListe des étudiants non trouvée. Opération avortée.")
         sys.exit(3)

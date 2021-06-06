@@ -5,5 +5,4 @@ Date d'execution : {{date}}
 Score obtenu : {{student_score[scenario_name]}}
 -------------------------------------------
 {% endfor %}
--------------------------------------------
 Votre score total : {{score}}
