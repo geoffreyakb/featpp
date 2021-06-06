@@ -68,6 +68,6 @@ def progress(tp, promo):
     # Ecriture de l'avancée globale dans un fichier 
     text = utility.print_overall_progress(database_address, students_list, scenarios)
     date = str(datetime.datetime.today().strftime("%Y-%m-%d_%Hh%Mm%Ss"))
-    with open(tp + '/avancee_globale_' + date + '.txt', 'w') as overall_progress:
+    with open(tp + '/avancee' + '_' + tp + promo + date + '.txt', 'w') as overall_progress:
         overall_progress.write(text)
         overall_progress.close()

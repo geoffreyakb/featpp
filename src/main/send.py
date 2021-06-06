@@ -23,6 +23,9 @@ from variables import *
 @argumentType("promos", str)
 def send(project, *promos):
 
+    if promos == ('all',):
+        promos = repository_path
+
     for eleves in promos:
 
         project_folder = os.path.join(projects_path, project)
