@@ -2,6 +2,7 @@
 import json
 import os
 
+# On veut le path du dossier src en réalité, mais c'est plus parlant
 featpp_path = os.path.dirname(__file__)
 featpp_path = os.path.split(featpp_path)[0]
 

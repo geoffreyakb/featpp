@@ -5,7 +5,7 @@ import re
 # Fichier stockant les paths utiles
 from variables import *
 
-# Module FEAT++ utile pour parcourir le fichier src et importer les autres modules
+# Module FEAT++ utile pour parcourir le dossier src et importer les autres modules
 sys.path.append(featpp_path)
 import env
 
