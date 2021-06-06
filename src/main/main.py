@@ -2,6 +2,13 @@
 import sys
 import re
 
+# Fichier stockant les paths utiles
+from variables import *
+
+# Module FEAT++ utile pour parcourir le fichier src et importer les autres modules
+sys.path.append(featpp_path)
+import env
+
 # Sous-programmes principaux
 from setup import setup
 from start import start
@@ -9,13 +16,6 @@ from runtests import runtests
 from send import send
 from evaluate import evaluate
 from progress import progress
-
-# Fichier stockant les paths utiles
-from variables import *
-
-# Module FEAT++ utile pour parcourir le fichier src et importer les autres modules
-sys.path.append(sys.path[0]+'/../../')
-import env
 
 # --------------------------------------------------------------------
 
