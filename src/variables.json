@@ -1,7 +1,6 @@
 {   
     "repository_path": {
-        "1A_SN" : "/Users/geoffrey_marty/Desktop/démo/repository/1A_SN/",
-        "2A_PREPA" : "/Users/geoffrey_marty/Desktop/démo/repository/2A_PREPA/"
+        "students" : "/Users/geoffrey_marty/Desktop/repository/students/"
     },
 
     "projects_path" : "/Users/geoffrey_marty/Desktop/démo/tps/"
